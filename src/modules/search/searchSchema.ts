@@ -4,4 +4,4 @@ export const searchSchema = `#graphql
   type Query {
     search(contains: String!): [SearchResult!]!
   }
-`
+`;

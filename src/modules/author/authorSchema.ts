@@ -3,4 +3,4 @@ export const authorSchema = `#graphql
     name: String!
     books: [Book!]!
   }
-`
+`;

@@ -1,4 +1,3 @@
-
 export const bookSchema = `#graphql
   enum BookCategory {
     ROMANCE
@@ -22,4 +21,4 @@ export const bookSchema = `#graphql
   type Mutation {
     addBook(title: String!, category: BookCategory!, releaseDate: Date!, author: String!): Book
   }
-`
+`;

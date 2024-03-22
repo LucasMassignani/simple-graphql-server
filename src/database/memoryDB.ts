@@ -1,4 +1,4 @@
-import { randomUUID } from "node:crypto";
+import { randomUUID } from 'node:crypto';
 
 export enum BookCategory {
   ROMANCE = 'ROMANCE',
@@ -20,8 +20,8 @@ export const authors: Author[] = [
   {
     id: randomUUID(),
     name: 'Paul Auster',
-  }
-]
+  },
+];
 
 export interface Book {
   id: string;
@@ -55,31 +55,30 @@ export const books: Book[] = [
   },
 ];
 
-
 export const findOrCreateAuthor = (authorName: string) => {
-  const foundedAuthor = authors.find(author => author.name === authorName);
+  const foundedAuthor = authors.find((author) => author.name === authorName);
 
-  if(foundedAuthor) {
+  if (foundedAuthor) {
     return foundedAuthor;
   }
 
   const newAuthor: Author = {
     id: randomUUID(),
     name: authorName,
-  }
+  };
 
   authors.push(newAuthor);
 
-  return newAuthor
-}
+  return newAuthor;
+};
 
 export const createBook = (book: Omit<Book, 'id'>) => {
   const newBook: Book = {
     id: randomUUID(),
     ...book,
-  }
+  };
 
   books.push(newBook);
 
   return newBook;
-}
+};

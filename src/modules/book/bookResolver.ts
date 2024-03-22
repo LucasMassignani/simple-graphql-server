@@ -1,4 +1,11 @@
-import { Book, BookCategory, authors, books, createBook, findOrCreateAuthor } from "../../database/memoryDB";
+import {
+  authors,
+  Book,
+  BookCategory,
+  books,
+  createBook,
+  findOrCreateAuthor,
+} from '../../database/memoryDB';
 
 export const bookResolver = {
   Query: {
@@ -6,15 +13,23 @@ export const bookResolver = {
   },
   Book: {
     author: (parent: Book) => {
-      return authors.find((author)=> author.id === parent.idAuthor)
-    }
+      return authors.find((author) => author.id === parent.idAuthor);
+    },
   },
   Mutation: {
-    addBook: (_, args: { title: string; category: BookCategory; releaseDate: Date; author: string }) => {
+    addBook: (
+      _: unknown,
+      args: {
+        title: string;
+        category: BookCategory;
+        releaseDate: Date;
+        author: string;
+      },
+    ) => {
       const { author: authorName, ...book } = args;
 
       const author = findOrCreateAuthor(authorName);
-      
+
       const newBook = createBook({
         title: book.title,
         category: book.category,
@@ -23,6 +38,6 @@ export const bookResolver = {
       });
 
       return newBook;
-    }
+    },
   },
 };
