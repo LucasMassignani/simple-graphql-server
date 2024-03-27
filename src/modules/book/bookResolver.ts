@@ -1,19 +1,27 @@
+import { GraphQLError } from 'graphql';
+
+import { Resolvers } from '../../__types__/resolvers-types';
 import {
   authors,
-  Book,
   BookCategory,
   books,
   createBook,
   findOrCreateAuthor,
 } from '../../database/memoryDB';
 
-export const bookResolver = {
+export const bookResolver: Resolvers = {
   Query: {
     books: () => books,
   },
   Book: {
-    author: (parent: Book) => {
-      return authors.find((author) => author.id === parent.idAuthor);
+    author: (parent) => {
+      const author = authors.find((author) => author.id === parent.idAuthor);
+
+      if (!author) {
+        throw new GraphQLError('Author not found');
+      }
+
+      return author;
     },
   },
   Mutation: {

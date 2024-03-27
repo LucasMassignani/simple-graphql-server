@@ -1,0 +1,27 @@
+enum BookCategory {
+  ROMANCE
+  DRAMA
+  FICTION
+  HORROR
+}
+
+type Book {
+  title: String!
+  category: BookCategory!
+  releaseDate: Date!
+  idAuthor: String!
+  author: Author!
+}
+
+type Query {
+  books: [Book]
+}
+
+type Mutation {
+  addBook(
+    title: String!
+    category: BookCategory!
+    releaseDate: Date!
+    author: String!
+  ): Book
+}
